@@ -12,6 +12,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile-pictures/', null=True, blank=True)
     githubProfileUrl = models.URLField(null=True, blank=True)
+    email_verified = models.BooleanField(default=False)
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):

@@ -11,6 +11,29 @@
     {% tailwind_css %}
 </head>
 <body class="m-0 p-0 font-notosans">
+    {% if messages %}
+    <div class="absolute bottom-5 right-5">
+        {% for message in messages %}
+        <div class="
+            alert
+            border-l-8
+            {% if message.tags == 'success'%}
+                bg-[#5dd879] border-[#28a745]
+            {% else %}
+                bg-[#eb8c95] border-[#dc3545]
+            {% endif %}
+            w-[400px] flex text-black mb-3"
+        >
+            <p class="p-4 self-center">
+                <i class="fa-solid fa-circle-exclamation text-xl mr-2 {% if message.tags == 'success'%}text-[#28a745]{% else %}text-[#dc3545]{% endif %}"></i>
+                <span>{{message}}</span>
+            </p>
+            <p class="self-center ml-auto p-5 bg-slate-400 cursor-pointer hover:bg-slate-500 text-black" onclick="hideAlert()"><i class="fa-solid fa-xmark"></i></p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <header class="bg-slate-300">
         <div class="container mx-auto">
             <div class="flex justify-between">
@@ -37,5 +60,14 @@
             <p class="text-center font-medium">&copy; 2023 ManagePro</p>
         </div>
     </footer>
+    <script>
+        function hideAlert(){
+            alerts = document.getElementsByClassName('alert');
+            alerts[0].classList.add('hidden');
+        }
+        setTimeout(function(){
+            hideAlert();
+        },5000);
+    </script>
 </body>
 </html>

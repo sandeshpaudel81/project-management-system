@@ -73,7 +73,8 @@ module.exports = {
             },
             'slate': {
                 300: '#cbd5e1',
-                400: '#94a3b8'
+                400: '#94a3b8',
+                500: '#64748b',
             },
             'ultravoilet': '#5F4B8BFF',
             'bloomingdahila': '#E69A8DFF',
