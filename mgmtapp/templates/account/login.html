@@ -1,0 +1,110 @@
+{% extends '../base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% block title %}Login | ManagePro{% endblock title %}
+
+{% block body %}
+    <!-- <div class="container mx-auto my-5">
+        <div class="grid grid-cols-2 gap-5 bg-gray-600 py-20">
+            <div>LOGIN</div>
+            <div class="bg-tahiti p-10">
+                <form>
+                    <div class="py-5">
+                        <input type="text" class="w-full outline-none bg-transparent border-">
+                    </div>
+                    <div class="py-5">
+                        <input type="password" class="w-full outline-none bg-transparent">
+                    </div>
+                    <div class="py-5">
+                        <button class="bg-ultravoilet w-full rounded-lg text">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+    <div class='flex justify-center items-center py-28'>
+        <div class='lg:grid grid-cols-2 gap-8 w-full hover:shadow-xl shadow-black transition-all ease-linear duration-300 lg:w-9/12 lg:px-6 rounded mx-auto'>
+            <div class=' gap-1 px-2 py-12 hidden lg:block items-center bg-slate-300'>
+
+                <div class='relative w-[280px] mx-auto h-[128px] rounded-sm'>
+                    <img alt='' priority src="{% static 'images/logo.png' %}" class='rounded-md object-cover' fill sizes="(min-width: 60em) 24vw, (min-width: 28em) 45vw, 100vw"/>
+                </div>
+                <div class='relative w-full mx-auto h-[248px] rounded-sm'>
+                    <img
+                        alt=''
+                        priority
+                        src="{% static 'images/logo.png' %}"
+                        class='rounded-sm object-cover'
+                        fill
+                        sizes="(min-width: 60em) 24vw,
+                                    (min-width: 28em) 45vw,
+                                    100vw"
+                    />
+                </div>
+            </div>
+
+            <div class='bg-slate-300 py-5 px-20'>
+                <div class='relative lg:w-full mx-auto h-[220px] rounded-sm'>
+                    <p class="font-semibold text-center">Login to</p>
+                    <Image
+                        alt=''
+                        priority
+                        src="{% static 'images/logo.png' %}"
+                        class='rounded-md'
+                        fill
+                        sizes="(min-width: 60em) 24vw,
+                                    (min-width: 28em) 45vw,
+                                    100vw"
+                    />
+                </div>
+
+                <form action="/accounts/login" class='grid grid-cols-1 gap-y-4 -mt-5'>
+                    <div class='bg-background px-4 space-x-1 py-[2px] rounded-2xl flex justify-center items-center'>
+                        <div class='relative flex justify-center items-center'>
+                            <i class="fa-solid fa-user h-6 w-6 text-gray-900 cursor-pointer hover:text-gray-400 transition-all ease-in-out duration-300"></i>
+                        <!-- <FiMail class='h-6 w-6 text-gray-900 cursor-pointer hover:text-gray-400 transition-all ease-in-out duration-300' /> -->
+                        </div>
+                        <input
+                            placeholder='Username'
+                            class='rounded-3xl text-gray-700 h-12 focus:ring-ultravoilet border-bloomingdahila w-full bg-white focus:border-ultravoilet placeholder:text-gray-400 placeholder:font-medium'
+                            type="text"
+                            name="username"
+                            required
+                        />
+                    </div>
+                    
+                    <div class='relative bg-background space-x-1 px-4 py-[2px] rounded-2xl flex justify-center items-center '>
+                        <i class="fa-solid fa-key h-6 w-6 text-gray-900 cursor-pointer hover:text-gray-400 transition-all ease-in-out duration-300"></i>
+                        <!-- <MdVpnKey class='h-6 w-6 text-gray-900 cursor-pointer hover:text-gray-400 transition-all ease-in-out duration-300' /> -->
+
+                        <div class="flex absolute right-2 inset-y-0 items-center cursor-pointer pr-3 text-gray-700 transition-all duration-200">
+                            <!-- eye -->
+                        </div>
+
+                        <input
+                            placeholder='Password'
+                            class='rounded-3xl text-gray-700 h-12 focus:ring-ultravoilet border-bloomingdahila w-full bg-white focus:border-ultravoilet placeholder:text-gray-400 placeholder:font-medium'
+                            type="password"
+                            name="password" />
+                    </div>
+
+                    
+                    <div class='flex justify-end px-4'>
+                        <button class=' text-secondary-text/80 font-semibold hover:text-ultravoilet'>Forgot Password?</button>
+                    </div>
+                    <div class="px-4">
+                        <button class='w-full p-1 bg-ultravoilet rounded-2xl transition-all duration-500 ease-in-out text-white text-lg font-medium'>Login</button>
+                    </div>
+                </form>
+                <div class='flex justify-center items-center'>
+                    <p class='my-2 text-secondary-text text-center font-semibold'>Don't have an account?</p>
+                    <button class='text-[#023E8A] ml-2 font-bold'>SignUp</button>
+                </div>
+                <div class="px-4">
+                    <p class="my-2 text-center font-extralight">Or</p>
+                    <a href="{% provider_login_url 'google' %}"><button class='w-full p-1 border-2 border-ultravoilet bg-white rounded-2xl transition-all duration-500 ease-in-out text-black text-lg font-medium'><i class="fa-brands fa-google mr-3"></i> Continue with Google</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
