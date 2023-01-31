@@ -41,10 +41,12 @@
                     <a href="/"><img src="{% static 'images/logo.png' %}" alt="Manage Pro Logo" class="w-full"/></a>
                 </div>
                 <div class="self-center flex font-medium gap-3">
+                    <a href="/" class="hover:text-ultravoilet ml-5">Home</a>
                     {% if user.is_authenticated %}
-                    <a href="/profile" class="hover:text-ultravoilet">Profile</a>
+                    <a href="/dashboard" class="hover:text-ultravoilet ml-5">Dashboard</a>
+                    <a href="/profile" class="hover:text-ultravoilet ml-5">Profile</a>
                     {% else %}
-                    <a href="/accounts/login" class="hover:text-ultravoilet">Login</a>
+                    <a href="/accounts/login" class="hover:text-ultravoilet ml-5">Login</a>
                     {% endif %}
                 </div>
             </div>

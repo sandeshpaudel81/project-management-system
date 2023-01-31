@@ -47,3 +47,8 @@ def user_signup(request):
         else:
             messages.error(request, 'Passwords do not match')
             return redirect("/accounts/signup")
+
+
+def dashboard(request):
+    context = {}
+    return render(request, 'dashboard.html', context)
