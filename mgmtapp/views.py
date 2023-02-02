@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
+from django.db import connection
 from django.contrib import messages
 from django.contrib.auth.models import User
 import re
+from datetime import datetime
+import random
 
 # Create your views here.
 def home(request):
@@ -48,7 +50,30 @@ def user_signup(request):
             messages.error(request, 'Passwords do not match')
             return redirect("/accounts/signup")
 
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
+
+def create_projectCode():
+    not_unique = True
+    while not_unique:
+        unique_code = random.randint(100000000, 999999999)
+        cursor = connection.cursor()
+        cursor.execute("SELECT count(*) FROM mgmtapp_project WHERE projectCode = %s", [unique_code])
+        result = cursor.fetchone()
+        if (result[0]==0):
+            not_unique = False
+        return unique_code
+
 
 def dashboard(request):
+    cursor = connection.cursor()
+    cursor.execute("SELECT title FROM mgmtapp_project")
+    result = dictfetchall(cursor)
     context = {}
     return render(request, 'dashboard.html', context)

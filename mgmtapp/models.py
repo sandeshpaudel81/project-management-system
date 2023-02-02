@@ -45,8 +45,8 @@ class Project(models.Model):
     description = models.TextField(null=True, blank=True)
     githubRepositoryUrl = models.URLField(null=True, blank=True)
     projectAdmin = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    projectCode = models.PositiveIntegerField(unique=True, default=create_projectCode)
-    created_at = models.DateTimeField(auto_now_add=True)
+    projectCode = models.PositiveIntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return str(self.title)
@@ -54,7 +54,7 @@ class Project(models.Model):
 class ProjectMember(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return str(self.user.username)+'-'+str(self.project.title)
@@ -68,7 +68,7 @@ class Task(models.Model):
     started_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='task_started_by')
     is_completed = models.BooleanField(default=False)
     completed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='task_completed_by')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
     started_at = models.DateTimeField(null=True, blank=True)
     completed_at = models.DateTimeField(null=True, blank=True)
 
@@ -81,9 +81,10 @@ class Meeting(models.Model):
     title = models.CharField(max_length=1024, null=True, blank=True) 
     description = models.TextField(null=True, blank=True)
     meetingUrl = models.URLField(null=True, blank=True)
+    mode = models.CharField(max_length=10, null=True, blank=True)
     agendas = models.FileField(upload_to='meeting-agendas/', null=True, blank=True)
     notes = models.FileField(upload_to='meeting-notes/', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return str(self.title)

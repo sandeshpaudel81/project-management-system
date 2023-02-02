@@ -4,14 +4,88 @@
 {% block title %}Dashboard | ManagePro{% endblock title %}
 
 {% block body %}
-    <div class="container mx-auto">
+    <div class="container mx-auto py-10">
         <div>
-            <h2>My Projects</h2>
-            <div class="grid grid-cols-4">
-                <div class="bg-slate-400 w-96 h-96">Create Project</div>
-                <div>Project 1</div>
-                <div>Project 2</div>
-                <div>Project 3</div>
+            <h1 class="font-extrabold text-4xl uppercase">Dashboard</h1>
+            <div class="bg-ultravoilet w-[100px] h-2 my-3"></div>
+        </div>
+        <div class="pt-12">
+            <h2 class="border-l-4 border-bloomingdahila text-2xl px-5 py-2 font-bold">My Projects</h2>
+            <div class="grid grid-cols-4 p-10">
+                <div class="p-5">
+                    <a href="#">
+                        <div class="w-full min-h-[200px] h-full border-4 rounded-lg border-ultravoilet hover:scale-[1.03] relative">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                <p class="text-5xl text-center">+</p>
+                                <p class="text-center font-semibold text-xl">Create a project</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="bg-slate-300 p-5">
+                    <a href="#">
+                        <div class="w-auto h-[200px] hover:scale-[1.01]">
+                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
+                        </div>
+                        <p class="font-medium mt-2 ">Name of the Project</p>
+                    </a>
+                </div>
+                <div class="bg-slate-300 p-5">
+                    <a href="#">
+                        <div class="w-auto h-[200px] hover:scale-[1.01]">
+                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
+                        </div>
+                        <p class="font-medium mt-2 ">Name of the Project</p>
+                    </a>
+                </div>
+                <div class="bg-slate-300 p-5">
+                    <a href="#">
+                        <div class="w-auto h-[200px] hover:scale-[1.01]">
+                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
+                        </div>
+                        <p class="font-medium mt-2 ">Name of the Project</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-12">
+            <h2 class="border-l-4 border-bloomingdahila text-2xl px-5 py-2 font-bold">All Projects</h2>
+            <div class="grid grid-cols-4 p-10">
+                <div class="p-5">
+                    <a href="#">
+                        <div class="w-full min-h-[200px] h-full border-4 rounded-lg border-ultravoilet hover:scale-[1.03] relative">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                <p class="text-5xl text-center">+</p>
+                                <p class="text-center font-semibold text-xl">Join a project</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="bg-slate-300 p-5">
+                    <a href="#">
+                        <div class="w-auto h-[200px] hover:scale-[1.01]">
+                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
+                        </div>
+                        <p class="font-medium mt-2 ">Name of the Project</p>
+                    </a>
+                </div>
+                <div class="bg-slate-300 p-5">
+                    <a href="#">
+                        <div class="w-auto h-[200px] hover:scale-[1.01]">
+                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
+                        </div>
+                        <p class="font-medium mt-2 ">Name of the Project</p>
+                    </a>
+                </div>
+                <div class="bg-slate-300 p-5">
+                    <a href="#">
+                        <div class="w-auto h-[200px] hover:scale-[1.01]">
+                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
+                        </div>
+                        <p class="font-medium mt-2 ">Name of the Project</p>
+                    </a>
+                </div>
             </div>
         </div>
 
