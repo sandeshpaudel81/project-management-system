@@ -6,6 +6,10 @@ from django.contrib.auth.models import User
 import re
 from datetime import datetime
 import random
+# from django.core.mail import EmailMessage
+# from django.template import Context
+# from django.template.loader import get_template
+# from django.conf import settings
 
 # Create your views here.
 def home(request):
@@ -72,8 +76,47 @@ def create_projectCode():
 
 
 def dashboard(request):
-    cursor = connection.cursor()
-    cursor.execute("SELECT title FROM mgmtapp_project")
-    result = dictfetchall(cursor)
     context = {}
     return render(request, 'dashboard.html', context)
+
+
+# def verify_email(request):
+#     user = request.user
+#     message = get_template("verification-email.html").render({
+#         'user': user
+#     })
+#     mail = EmailMessage(
+#         subject="Verify your email address",
+#         body=message,
+#         from_email=settings.EMAIL_HOST_USER,
+#         to=['pas076bct034@wrc.edu.np'],
+#         reply_to=[settings.EMAIL_HOST_USER],
+#     )
+#     mail.content_subtype = "html"
+#     mail.send()
+# from django.core.mail import EmailMessage
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
+# from django.template import Context
+# from django.template.loader import get_template
+# from app.settings import EMAIL_ADMIN
+# from .models.order import Order
+
+# @receiver(post_save, sender=Order)
+# def send_order_email_confirmation(sender, instance, **kwargs):
+#     """
+#     Send email to customer with order details.
+#     """
+#     order = instance
+#     message = get_template("emails/order_conf.html").render(Context({
+#         'order': order.get_serialized_data()
+#     }))
+#     mail = EmailMessage(
+#         subject="Order confirmation",
+#         body=message,
+#         from_email=EMAIL_ADMIN,
+#         to=[order.email],
+#         reply_to=[EMAIL_ADMIN],
+#     )
+#     mail.content_subtype = "html"
+#     return mail.send()
