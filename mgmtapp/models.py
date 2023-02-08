@@ -31,13 +31,13 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
-def create_projectCode():
-    not_unique = True
-    while not_unique:
-        unique_code = random.randint(100000000, 999999999)
-        if not Project.objects.filter(projectCode=unique_code):
-            not_unique = False
-        return unique_code
+# def create_projectCode():
+#     not_unique = True
+#     while not_unique:
+#         unique_code = random.randint(100000000, 999999999)
+#         if not Project.objects.filter(projectCode=unique_code):
+#             not_unique = False
+#         return unique_code
 
 
 class Project(models.Model):
@@ -50,6 +50,7 @@ class Project(models.Model):
 
     def __str__(self):
         return str(self.title)
+
 
 class ProjectMember(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)

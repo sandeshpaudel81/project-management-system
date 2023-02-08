@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -80,6 +81,27 @@ def dashboard(request):
     return render(request, 'dashboard.html', context)
 
 
+@login_required
+def createProject(request):
+    if request.method == 'POST':
+        user = request.user
+        title = request.POST['title']
+        github = request.POST['github']
+        desc = request.POST['description']
+        # try:
+        projectCode = create_projectCode()
+        createdAt = datetime.now()
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO mgmtapp_project(title, description, githubRepositoryUrl, projectAdmin, projectCode, created_at) VALUES (%s, %s, %s, %s, %s, %s)", [title, desc, str(github), user, projectCode, createdAt])
+        messages.success(request, 'Project created successfully!')
+        return redirect('/dashboard')
+        # except:
+        #     messages.error(request, 'Error while creating project!')
+        #     return redirect('/create-project')
+    context = {}
+    return render(request, 'create_project.html', context)
+
+
 # def verify_email(request):
 #     user = request.user
 #     message = get_template("verification-email.html").render({
@@ -101,22 +123,3 @@ def dashboard(request):
 # from django.template.loader import get_template
 # from app.settings import EMAIL_ADMIN
 # from .models.order import Order
-
-# @receiver(post_save, sender=Order)
-# def send_order_email_confirmation(sender, instance, **kwargs):
-#     """
-#     Send email to customer with order details.
-#     """
-#     order = instance
-#     message = get_template("emails/order_conf.html").render(Context({
-#         'order': order.get_serialized_data()
-#     }))
-#     mail = EmailMessage(
-#         subject="Order confirmation",
-#         body=message,
-#         from_email=EMAIL_ADMIN,
-#         to=[order.email],
-#         reply_to=[EMAIL_ADMIN],
-#     )
-#     mail.content_subtype = "html"
-#     return mail.send()

@@ -76,7 +76,9 @@ module.exports = {
                 400: '#94a3b8',
                 500: '#64748b',
             },
+            'ultravoiletL': '#7760A9FF',
             'ultravoilet': '#5F4B8BFF',
+            'ultravoiletD': '#48396AFF',
             'bloomingdahila': '#E69A8DFF',
         },
         fontFamily: {
