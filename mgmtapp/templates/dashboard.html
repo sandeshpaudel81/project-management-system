@@ -22,35 +22,21 @@
                         </div>
                     </a>
                 </div>
+                {% for project in myProjects %}
                 <div class="bg-slate-300 p-5">
                     <a href="#">
                         <div class="w-auto h-[200px] hover:scale-[1.01]">
                             <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
                         </div>
-                        <p class="font-medium mt-2 ">Name of the Project</p>
+                        <p class="font-medium mt-2 ">{{project.title}}</p>
                     </a>
                 </div>
-                <div class="bg-slate-300 p-5">
-                    <a href="#">
-                        <div class="w-auto h-[200px] hover:scale-[1.01]">
-                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
-                        </div>
-                        <p class="font-medium mt-2 ">Name of the Project</p>
-                    </a>
-                </div>
-                <div class="bg-slate-300 p-5">
-                    <a href="#">
-                        <div class="w-auto h-[200px] hover:scale-[1.01]">
-                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
-                        </div>
-                        <p class="font-medium mt-2 ">Name of the Project</p>
-                    </a>
-                </div>
+                {% endfor %}
             </div>
         </div>
 
         <div class="pt-12">
-            <h2 class="border-l-4 border-bloomingdahila text-2xl px-5 py-2 font-bold">All Projects</h2>
+            <h2 class="border-l-4 border-bloomingdahila text-2xl px-5 py-2 font-bold">Joined Projects</h2>
             <div class="grid grid-cols-4 p-10">
                 <div class="p-5">
                     <a href="#">
@@ -62,30 +48,20 @@
                         </div>
                     </a>
                 </div>
+                {% for project in joinedProjects %}
                 <div class="bg-slate-300 p-5">
                     <a href="#">
                         <div class="w-auto h-[200px] hover:scale-[1.01]">
                             <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
                         </div>
-                        <p class="font-medium mt-2 ">Name of the Project</p>
+                        <p class="font-medium mt-2 ">{{project.title}}</p>
+                        <p>
+                            <i class="fa-solid fa-user h-4 w-4 text-gray-900 mr-3"></i>
+                            <small>{{project.username}}</small>
+                        </p>
                     </a>
                 </div>
-                <div class="bg-slate-300 p-5">
-                    <a href="#">
-                        <div class="w-auto h-[200px] hover:scale-[1.01]">
-                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
-                        </div>
-                        <p class="font-medium mt-2 ">Name of the Project</p>
-                    </a>
-                </div>
-                <div class="bg-slate-300 p-5">
-                    <a href="#">
-                        <div class="w-auto h-[200px] hover:scale-[1.01]">
-                            <img src="{% static 'images/project-placeholder.jpg' %}" class="h-full w-full object-cover"/>
-                        </div>
-                        <p class="font-medium mt-2 ">Name of the Project</p>
-                    </a>
-                </div>
+                {% endfor %}
             </div>
         </div>
 

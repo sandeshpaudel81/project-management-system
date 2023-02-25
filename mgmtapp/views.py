@@ -77,7 +77,13 @@ def create_projectCode():
 
 
 def dashboard(request):
-    context = {}
+    user = request.user
+    cursor = connection.cursor()
+    cursor.execute("SELECT id, title FROM mgmtapp_project WHERE projectAdmin_id = %s ORDER BY created_at DESC", [user.id])
+    myProjects = dictfetchall(cursor)
+    cursor.execute("SELECT mgmtapp_project.id, mgmtapp_project.title, auth_user.username FROM mgmtapp_project INNER JOIN auth_user ON mgmtapp_project.projectAdmin_id=auth_user.id WHERE mgmtapp_project.id IN (SELECT project_id FROM mgmtapp_projectmember WHERE user_id = %s) ORDER BY created_at DESC", [user.id])
+    joinedProjects = dictfetchall(cursor)
+    context = {'myProjects':myProjects, 'joinedProjects':joinedProjects}
     return render(request, 'dashboard.html', context)
 
 
@@ -88,16 +94,16 @@ def createProject(request):
         title = request.POST['title']
         github = request.POST['github']
         desc = request.POST['description']
-        # try:
-        projectCode = create_projectCode()
-        createdAt = datetime.now()
-        cursor = connection.cursor()
-        cursor.execute("INSERT INTO mgmtapp_project(title, description, githubRepositoryUrl, projectAdmin, projectCode, created_at) VALUES (%s, %s, %s, %s, %s, %s)", [title, desc, str(github), user, projectCode, createdAt])
-        messages.success(request, 'Project created successfully!')
-        return redirect('/dashboard')
-        # except:
-        #     messages.error(request, 'Error while creating project!')
-        #     return redirect('/create-project')
+        try:
+            projectCode = create_projectCode()
+            createdAt = datetime.now()
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO mgmtapp_project(title, description, githubRepositoryUrl, projectAdmin_id, projectCode, created_at) VALUES (%s, %s, %s, %s, %s, %s)", [title, desc, str(github), user.id, projectCode, createdAt])
+            messages.success(request, 'Project created successfully!')
+            return redirect('/dashboard')
+        except:
+            messages.error(request, 'Error while creating project! Try again!')
+            return redirect('/create-project')
     context = {}
     return render(request, 'create_project.html', context)
 
